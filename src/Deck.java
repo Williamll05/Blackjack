@@ -9,10 +9,6 @@ class Deck {
     public Deck () {
         deck = new ArrayList<>();
         generateNewDeck();
-        printDeck();
-        shuffle();
-        System.out.println();
-        printDeck();
     }
 
     public void generateNewDeck() {
@@ -22,9 +18,10 @@ class Deck {
                 deck.add(new Card(i, s));
             }
         }
+        shuffle();
     }
 
-    public void shuffle() {
+    private void shuffle() {
         Collections.shuffle(deck);
     } // Instead of shuffling you could just take out a random index from the deck each time a card is drawn, both work though
 

@@ -1,7 +1,7 @@
 public class Card {
 
-    public int value;
-    public String suit;
+    private int value;
+    private String suit;
     private final String[] faces = {"Jack", "Queen", "King"};
 
     public Card (int value, String suit) {
@@ -17,6 +17,10 @@ public class Card {
         else {
             System.out.println(faces[value - 11] + " of " + suit);
         }
+    }
+
+    public int getValue() {
+        return Math.min(value, 10); // Return either the number card value, or if face card, return 10
     }
 
 }
