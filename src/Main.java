@@ -7,24 +7,25 @@ public class Main {
         String input;
         int credits = 100;
         Scanner scanner = new Scanner(System.in);
-        Game game = new Game();
-        System.out.println("Hello! Welcome to blackjack!");
+        UserInterface ui = new ConsoleUserInterface();
+        Game game = new Game(ui);
+        ui.output("Hello! Welcome to blackjack!");
 
-        while(true) { // Entering our input loop - we will exit out of this once the player exits the game, and the program will finish
-            System.out.println("What would you like to do?");
-            System.out.println("Type the letter that matches your choice.");
-            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        while(true) { // Entering input loop - is over when the player exits the game, and the program will finish
+            ui.output("What would you like to do?");
+            ui.output("Type the letter that matches your choice.");
+            ui.output("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
             if(inGame) {
-                System.out.println("A - Stand");
-                System.out.println("B - Hit");
-                System.out.println("C - Double down");
+                ui.output("A - Stand");
+                ui.output("B - Hit");
+                ui.output("C - Double down");
                 input = scanner.next();
                 game.handleChoice(input);
-                inGame = !game.gameFinished;
+                inGame = !game.isGameFinished();
             }
             else {
-                System.out.println("A - Start new game");
-                System.out.println("B - Exit");
+                ui.output("A - Start new game");
+                ui.output("B - Exit");
                 input = scanner.next();
                 if (input.equals("a") || input.equals("A")) {
                     inGame = true;
@@ -34,8 +35,8 @@ public class Main {
                     break;
                 }
                 else {
-                    System.out.println("Invalid input - please try again.");
-                    System.out.println();
+                    ui.output("Invalid input - please try again.");
+                    ui.output("");
                 }
             }
         }

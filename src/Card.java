@@ -9,14 +9,16 @@ public class Card {
         this.suit = suit;
     }
 
-    public void printCard() {
+    public String toString() {
+        String card;
         if (value <= 10) {
-            System.out.println(value + " of " + suit);
+            card = (value + " of " + suit);
 
         }
         else {
-            System.out.println(faces[value - 11] + " of " + suit);
+            card = (faces[value - 11] + " of " + suit);
         }
+        return card;
     }
 
     public int getValue() {

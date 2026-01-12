@@ -1,40 +1,27 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class Player {
 
-    public boolean hasAce;
     boolean hasBlackjack;
     boolean isBust;
-    public ArrayList<Card> hand;
+    private final PlayerHand hand;
 
     public Player() {
-        hasAce = false;
         hasBlackjack = false;
         isBust = false;
-        hand = new ArrayList<>();
+        hand = new PlayerHand();
     }
 
-    public int handValue() {
-        int total = 0;
-        for(Card card : hand) {
-            total += card.getValue();
-            hasAce = (card.getValue() == 1);
-        }
-        if (hasAce && total <= 21) {
-            return total + 10;
-        }
-        return total;
+    public void receiveCard(Card card) {
+        hand.addCard(card);
     }
 
-    public void drawCard(Deck deck) {
-        hand.add(deck.deck.getFirst());
-        deck.deck.removeFirst();
+    public PlayerHand getHand() {
+        return hand;
     }
 
-    public void printHand () {
-        for (Card card : hand) {
-            card.printCard();
-        }
-        System.out.println("Total value: " + handValue());
+    public int getHandValue() {
+        return hand.getHandValue();
     }
 }

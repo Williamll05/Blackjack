@@ -1,9 +1,10 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 class Deck {
 
-    public ArrayList<Card> deck;
+    private final List<Card> deck;
     private final String[] suits = {"Spades", "Hearts", "Diamonds", "Clubs"};
 
     public Deck () {
@@ -23,12 +24,17 @@ class Deck {
 
     private void shuffle() {
         Collections.shuffle(deck);
-    } // Instead of shuffling you could just take out a random index from the deck each time a card is drawn, both work though
+    } // Instead of shuffling you could just take out a random index from the deck each time a card is drawn (and ensure you remove it from the deck), both likely work though
 
-    public void printDeck() {
-        System.out.println("Total cards: " + deck.size());
-        for(Card c : deck) {
-            c.printCard();
+/*      public void printDeck() {
+            System.out.println("Total cards: " + deck.size());
+            for(Card c : deck) {
+            GameInterface.output(c.getCardAsString());
         }
+    }
+*/
+    public Card deal() {
+        if(deck.isEmpty()) throw new IllegalStateException("Deck is empty");
+        return deck.removeFirst();
     }
 }
